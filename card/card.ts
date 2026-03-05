@@ -69,6 +69,10 @@ export default class Card {
     }
   }
 
+  public redistributeCard(): Card {
+    return new Card(this.random);
+  }
+
   public getCurrentCardValue(): string {
     return this.currentCardValue;
   }

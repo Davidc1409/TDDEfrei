@@ -8,10 +8,29 @@ export default class Player {
   constructor(name: string) {
     const random = new Random();
     for (let i = 0; i < 2; i++) {
-      const card = new Card(random);
-      this.cards.push(card);
+      if (this.cards.length == 0) {
+        const card = new Card(random);
+        this.cards.push(card);
+      } else {
+        const card2 = new Card(random);
+        const isDuplicate = this.isDuplicateCards(card2);
+        if (!isDuplicate) {
+          this.cards.push(card2);
+        } else {
+        }
+      }
     }
     this.name = name;
+  }
+
+  private isDuplicateCards(cardToCompare: Card): boolean {
+    const card = this.cards.find((card) => {
+      card.getCurrentCardValue() == cardToCompare.getCurrentCardValue();
+    });
+    if (card) {
+      return true;
+    }
+    return false;
   }
 
   public getPlayerCards(): Card[] {

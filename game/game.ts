@@ -2,9 +2,14 @@ import Card from "../card/card";
 import Player from "../player/player";
 import Board from "../board/board";
 
+interface playerCombinaison {
+  combinaison: string[];
+}
+
 export default class Game {
   private players: Player[];
   private board: Board;
+  private playersCombinaison: playerCombinaison[] = [];
   constructor(board: Board, players: Player[] = []) {
     this.board = board;
     this.players = players;
@@ -19,5 +24,6 @@ export default class Game {
     this.players.push(newplayer);
   }
 
-  public checkPlayerCombinaison() {}
+  public checkPlayerBestCombinaison() {}
+  public pickWinner() {}
 }
