@@ -4,33 +4,26 @@ import Random from "../card/random";
 export default class Player {
   private name: string;
   private cards: Card[] = [];
+  private indexScore: number = 0.0;
 
   constructor(name: string) {
     const random = new Random();
-    for (let i = 0; i < 2; i++) {
+    while (this.cards.length < 2) {
       if (this.cards.length == 0) {
         const card = new Card(random);
         this.cards.push(card);
       } else {
         const card2 = new Card(random);
-        const isDuplicate = this.isDuplicateCards(card2);
+        let isDuplicate;
+        this.cards.forEach((card) => {
+          isDuplicate = Card.isDuplicateCards(card2, card);
+        });
         if (!isDuplicate) {
           this.cards.push(card2);
-        } else {
         }
       }
     }
     this.name = name;
-  }
-
-  private isDuplicateCards(cardToCompare: Card): boolean {
-    const card = this.cards.find((card) => {
-      card.getCurrentCardValue() == cardToCompare.getCurrentCardValue();
-    });
-    if (card) {
-      return true;
-    }
-    return false;
   }
 
   public getPlayerCards(): Card[] {

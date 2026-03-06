@@ -69,6 +69,10 @@ export default class Card {
     }
   }
 
+  public static isDuplicateCards(cardLeft: Card, cardRight: Card): boolean {
+    return cardLeft.getCurrentCardValue() === cardRight.getCurrentCardValue();
+  }
+
   public redistributeCard(): Card {
     return new Card(this.random);
   }
